@@ -7,17 +7,15 @@ $(function() {
     success: function(response) {
       // handle response
       response.courses.completed.forEach(function(element){
-        $div = $('<div class="course">');
-        $('#badges').append($div);
-        $div.append('<h3>');
-        $('h3',$div).text(element.title);
-        $div.append('<img>');
-        $('img',$div).attr({src: element.badge});
-        $div.append('<a>');
-        $('a',$div).attr({href: element.url})
-          .attr({target:'_blank'})
-          .addClass('btn btn-primary')
-          .text('See Course');
+        $('<div>', {'class': 'course'}).appendTo($('#badges'))
+          .append($('<h3>', {text: element.title}))
+          .append($('<img>', {src: element.badge}))
+          .append($('<a>', {
+            'class': 'btn btn-primary',
+            href: element.url,
+            target: '_blank',
+            text: 'See Course'
+          }));
       });
     }
   });
